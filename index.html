@@ -133,6 +133,15 @@ z-index:1;
   pointer-events: auto;
 }
 
+.heart{
+position:fixed;
+top:-10px;
+color:#ff4b7d;
+animation:fall 5s linear linear;
+pointer-events:none;
+z-index:0;
+}
+
 </style>
 </head>
 
@@ -157,30 +166,45 @@ z-index:1;
 
 <h2 id="rita" onclick="corazones()">Para Rita ❤️</h2>
 
-<p>
-Desde el 20 de abril del 2022 mi vida cambió completamente.
-Desde ese día empezaste a convertirte en una de las cosas más bonitas que me han pasado.
-Tal vez hoy no podamos abrazarnos o ni tomarnos de la mano como nos gustaría,
-pero quería hacerte algo que viviera aquí, en internet…
+<p> 
+Desde el 20 de abril del 2022 mi vida cambió completamente. 
+Desde ese día empezaste a convertirte en una 
+de las cosas más bonitas que me han pasado. 
+</p> 
+  
+<p> 
+Tal vez hoy no podamos abrazarnos o
+ni tomarnos de la mano como nos gustaría,
+pero quería hacerte algo que viviera aquí,
+en internet… 
 así como nosotros vivimos en el corazón del otro.
+</p> 
+  
+<p> 
+Porque incluso en la distancia,
+sigues siendo mi lugar seguro, 
+i paz cuando todo va mal, 
+mi apoyo cuando lo necesito, 
+y mi persona favorita en este mundo. 
 </p>
-
+  
 <img id="peonia" src="peonia.png" class="peonia">
 
-<p>
-Porque incluso en la distancia,
-sigues siendo mi lugar seguro,
-mi paz cuando todo va mal,
-mi apoyo cuando lo necesito,
-y mi persona favorita en este mundo.
-Gracias por cada momento,
-por cada risa,
-por cada palabra de ánimo,
-y por quedarte incluso en los días difíciles.
-No importa donde estemos,
-ni cuantos kilómetros haya entre nosotros,
-siempre vamos a estar conectados
-de la forma más importante.
+<p> 
+Gracias por cada momento, 
+por cada risa, 
+por cada palabra de ánimo, 
+y por quedarte incluso en los días difíciles. 
+</p> 
+  
+<p> 
+No importa donde estemos, 
+ni cuantos kilómetros haya entre nosotros, 
+siempre vamos a estar conectados 
+de la forma más importante. 
+</p> 
+  
+<p> 
 Te amo muchísimo My Kirby 💖
 </p>
 
@@ -199,7 +223,7 @@ Te amo muchísimo My Kirby 💖
 
 <br><br>
 
-<div id="photo-gallery" class="slider hidden">
+<div id="fotos" class="slider hidden">
 <img src="foto1.jpeg">
 <img src="foto2.jpeg">
 <img src="foto3.jpeg">
@@ -263,26 +287,6 @@ function startHeartRain() {
   }, 300);
 }
 
-
-function mostrar(){
-document.getElementById("carta").classList.remove("hidden");
-
-let flor=document.getElementById("peonia");
-flor.classList.remove("hidden");
-
-setTimeout(()=>{
-flor.classList.add("visible");
-},100);
-
-//👇 SOLO iniciar la lluvia UNA vez
-if(!lluviaActiva){
-lluvia();
-lluviaActiva=true;
-}
-}
-
-
-
 function mensaje(){
 let msg=document.getElementById("extra");
 msg.innerHTML = msg.innerHTML=="" ?
@@ -311,12 +315,16 @@ document.getElementById("contador").innerHTML=
 dias+" días amándonos 💕";
 
 function lluvia(){
+
 setInterval(()=>{
+
 let heart=document.createElement("div");
-heart.classList.add("lluvia");
+heart.classList.add("heart");
 heart.innerHTML="💗";
+
 heart.style.left=Math.random()*100+"vw";
 heart.style.fontSize=Math.random()*20+10+"px";
+
 document.body.appendChild(heart);
 
 setTimeout(()=>{
@@ -324,6 +332,7 @@ heart.remove();
 },5000);
 
 },300);
+
 }
 
 </script>
