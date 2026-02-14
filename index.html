@@ -11,10 +11,19 @@ body{
 margin:0;
 font-family:Arial;
 background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-min-height:100%;
 text-align:center;
 color:white;
-overflow-y:auto;
+}
+
+#lockscreen{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
 }
 
 .container{
@@ -23,10 +32,7 @@ padding:25px;
 border-radius:20px;
 width:90%;
 max-width:400px;
-animation:fadeIn 2s;
 margin:20px auto;
-position:relative;
-z-index:1;
 }
 
 button{
@@ -43,40 +49,11 @@ margin-top:10px;
 display:none;
 }
 
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-.heart{
-position:fixed;
-color:#ff4b7d;
-animation:fall 5s linear infinite;
-pointer-events:none;
-}
-
-
-@keyframes fall{
-0%{transform:translateY(-100vh);}
-100%{transform:translateY(100dvh);}
-
-}
-
 .container img{
 max-width:100%;
 height:auto;
 border-radius:15px;
 margin-top:10px;
-}
-
-  
-#rita{
-animation:zoom 2s infinite alternate;
-}
-
-@keyframes zoom{
-from{transform:scale(1);}
-to{transform:scale(1.2);}
 }
 
 .slider{
@@ -87,7 +64,7 @@ scroll-snap-type:x mandatory;
 }
 
 .slider img{
-width:200px;
+width:220px;
 height:300px;
 object-fit:cover;
 border-radius:15px;
@@ -95,154 +72,62 @@ scroll-snap-align:center;
 flex-shrink:0;
 }
 
-.decoracion{
-position:absolute;
-right:10px;
-top:150px;
-width:120px;
-opacity:0.3;
-z-index:0;
+#rita{
+animation:zoom 2s infinite alternate;
 }
 
-.container{
-position:relative;
-z-index:1;
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.2);}
 }
 
 .peonia{
 display:block;
-margin:30px auto 0 auto;
-width:120px;
+margin:40px auto;
+width:180px;
 opacity:0;
 transform:scale(0);
 transition:all 1.5s ease;
 }
-
 
 .peonia.visible{
 opacity:1;
 transform:scale(1);
 }
 
-.corazon{
-position:absolute;
-color:#ff4b7d;
-animation:subir 2s linear forwards;
-pointer-events:none;
-}
-
-@keyframes subir{
-0%{transform:translateY(0);opacity:1;}
-100%{transform:translateY(-200px);opacity:0;}
-}
-
-.modal{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.7);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
-
-.modal-content{
-background:white;
-width:90%;
-max-height:80%;
-overflow-y:auto;
-padding:20px;
-border-radius:20px;
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-gap:15px;
-}
-
-.cupon{
-background:#ffe6eb;
-padding:10px;
-border-radius:15px;
-cursor:pointer;
-text-align:center;
-transition:0.3s;
-}
-
-.cupon:hover{
-transform:scale(1.05);
-}
-
-.usado{
-background:gray;
-text-decoration:line-through;
-}
-
-#passwordInput{
-width:250px;
-max-width:80%;
-display:block;
-margin:10px auto;
-border-radius:10px;
-border:none;
-padding:10px;
-}
-
-#lockscreen{
-position:fixed;
-inset:0;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:9999;
-}
-
 </style>
-
 </head>
-<body>
-<div id="lockscreen">
 
+<body>
+
+<div id="lockscreen">
 <h2>Introduce la contraseña 💌</h2>
-<input type="password" id="passwordInput" placeholder="Nuestra fecha 💕">
+<input type="password" id="pass" placeholder="Nuestra fecha 💕" style="padding:10px;border-radius:10px;border:none;">
 <br><br>
 <button onclick="checkPass()">Entrar</button>
 <p id="error"></p>
 </div>
 
-
 <div class="container">
-
 
 <h1>Hola My Kirby 💗</h1>
 <p>Bienvenida a nuestro pequeño lugar en internet</p>
 
 <button onclick="mostrar()">Haz clic si me amas 💌</button>
-<img id="peonia" src="./peonia.png" class="peonia hidden">
 
 <div id="carta" class="hidden">
 
-<h2 id="rita" onclick="corazones()">Para Rita ❤️</h2>
-
+<h2 id="rita">Para Rita ❤️</h2>
 
 <p>
 Desde el 20 de abril del 2022 mi vida cambió completamente.
 Desde ese día empezaste a convertirte en una de las cosas más bonitas que me han pasado.
+Tal vez hoy no podamos abrazarnos o ni tomarnos de la mano como nos gustaría,
+pero quería hacerte algo que viviera aquí, en internet…
+así como nosotros vivimos en el corazón del otro.
 </p>
 
-<p>
-Tal vez hoy no podamos abrazarnos o
-ni tomarnos de la mano como nos gustaría,
-pero quería hacerte algo que viviera aquí,
-en internet…
-así como nosotros vivimos
-en el corazón del otro.
-</p>
+<img id="peonia" src="peonia.png" class="peonia">
 
 <p>
 Porque incluso en la distancia,
@@ -250,28 +135,16 @@ sigues siendo mi lugar seguro,
 mi paz cuando todo va mal,
 mi apoyo cuando lo necesito,
 y mi persona favorita en este mundo.
-</p>
-
-<p>
 Gracias por cada momento,
 por cada risa,
 por cada palabra de ánimo,
 y por quedarte incluso en los días difíciles.
-</p>
-
-<p>
 No importa donde estemos,
 ni cuantos kilómetros haya entre nosotros,
 siempre vamos a estar conectados
 de la forma más importante.
-</p>
-
-<p>
 Te amo muchísimo My Kirby 💖
 </p>
-  
-<br><br>
-<button onclick="mostrarCupones()">Abrir cupones para My Kirby 🎟️</button>
 
 </div>
 
@@ -302,73 +175,32 @@ Te amo muchísimo My Kirby 💖
 <img src="foto11.jpeg">
 </div>
 
-<br><br>
-
-</div>
-
 </div>
 
 <script>
 
 function mostrar(){
 document.getElementById("carta").classList.remove("hidden");
-
 let flor=document.getElementById("peonia");
-flor.classList.remove("hidden");
-
 setTimeout(()=>{
 flor.classList.add("visible");
-},100);
-
-lluvia();
+},200);
 }
-
 
 function mensaje(){
 let msg=document.getElementById("extra");
-
-if(msg.innerHTML===""){
-msg.innerHTML="Incluso cuando no estoy contigo, mi corazón siempre está contigo ❤️";
-}else{
-msg.innerHTML="";
-}
+msg.innerHTML = msg.innerHTML=="" ?
+"Incluso cuando no estoy contigo, mi corazón siempre está contigo ❤️" : "";
 }
 
 function sorpresa(){
 let msg=document.getElementById("sorp");
-
-if(msg.innerHTML===""){
-msg.innerHTML="Sabía que lo ibas a presionar 😌 Feliz San Valentín, te amo Rita 💕";
-}else{
-msg.innerHTML="";
-}
+msg.innerHTML = msg.innerHTML=="" ?
+"Sabía que lo ibas a presionar 😌 Feliz San Valentín, te amo Rita 💕" : "";
 }
 
-var inicio=new Date("2022-04-20");
-var hoy=new Date();
-var dias=Math.floor((hoy-inicio)/(1000*60*60*24));
-
-document.getElementById("contador").innerHTML=
-dias+" días amándonos 💕";
-
-function lluvia(){
-setInterval(()=>{
-let heart=document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML="💗";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=Math.random()*20+10+"px";
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},5000);
-
-},300);
-  
-}
 function checkPass(){
-let password=document.getElementById("passwordInput").value;
+let password=document.getElementById("pass").value;
 if(password==="20042022"){
 document.getElementById("lockscreen").style.display="none";
 }else{
@@ -376,87 +208,13 @@ document.getElementById("error").innerHTML="Contraseña incorrecta 😢";
 }
 }
 
-function corazones(){
-for(let i=0;i<10;i++){
-let heart=document.createElement("div");
-heart.classList.add("corazon");
-heart.innerHTML="💗";
-
-let rita=document.getElementById("rita");
-let rect=rita.getBoundingClientRect();
-
-heart.style.left=(rect.left+Math.random()*100)+"px";
-heart.style.top=(rect.top)+"px";
-heart.style.fontSize=Math.random()*20+10+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},2000);
-}
-}
-
-let listaCupones=[
-"Elegir nuestra próxima peli",
-"1 masaje cuando nos veamos",
-"1 cita virtual sorpresa",
-"5 besos acumulables",
-"Rafa cocina sin quejarse",
-"Llamada nocturna sin importar la hora",
-"1 día sin discutir",
-"Abrazo infinito IRL",
-"1 noche de juegos",
-"Elegir playlist",
-"1 desayuno en la cama",
-"Rafa cuenta un chisme",
-"Videollamada sin excusas",
-"1 beso extra",
-"Rafa dice que sí a todo",
-"1 película romántica",
-"Elegir comida",
-"1 apapacho",
-"Rafa canta",
-"1 selfie juntos",
-"1 meme dedicado",
-"1 mensaje sorpresa",
-"Elegir fondo de pantalla",
-"1 paseo juntos",
-"Rafa ve tu serie"
-];
-
-function mostrarCupones(){
-document.getElementById("cupones").classList.remove("hidden");
-renderCupones();
-}
-
-function renderCupones(){
-let cont=document.getElementById("contenedorCupones");
-cont.innerHTML="";
-listaCupones.forEach((c,i)=>{
-let usado=localStorage.getItem("cupon"+i);
-let div=document.createElement("div");
-div.classList.add("cupon");
-if(usado){div.classList.add("usado");}
-div.innerHTML=c;
-div.onclick=function(){
-localStorage.setItem("cupon"+i,true);
-renderCupones();
-};
-cont.appendChild(div);
-});
-}
-window.onclick=function(e){
-if(e.target.id==="cupones"){
-document.getElementById("cupones").classList.add("hidden");
-}
-}
+var inicio=new Date("2022-04-20");
+var hoy=new Date();
+var dias=Math.floor((hoy-inicio)/(1000*60*60*24));
+document.getElementById("contador").innerHTML=
+dias+" días amándonos 💕";
 
 </script>
-  
-<div id="cupones" class="modal hidden">
-<div class="modal-content" id="contenedorCupones"></div>
-</div>
 
 </body>
 </html>
