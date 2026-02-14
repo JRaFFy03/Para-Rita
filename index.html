@@ -122,6 +122,17 @@ z-index:1;
 100%{transform:translateY(100dvh);}
 }
 
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 </style>
 </head>
 
@@ -188,7 +199,7 @@ Te amo muchísimo My Kirby 💖
 
 <br><br>
 
-<div class="slider">
+<div id="photo-gallery" class="slider hidden">
 <img src="foto1.jpeg">
 <img src="foto2.jpeg">
 <img src="foto3.jpeg">
@@ -202,10 +213,10 @@ Te amo muchísimo My Kirby 💖
 <img src="foto11.jpeg">
 </div>
 
-</div>
 
 <script>
-
+let heartRainActive = false;
+  
 function corazones(){
 for(let i=0;i<10;i++){
 let heart=document.createElement("div");
@@ -227,16 +238,50 @@ heart.remove();
 }
 }
 
-function mostrar(){
-document.getElementById("carta").classList.remove("hidden");
-let flor=document.getElementById("peonia");
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart-rain");
+  heart.innerHTML = "❤️";
 
-setTimeout(()=>{
-flor.classList.add("visible");
-},200);
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
 
-lluvia();
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
 }
+
+function startHeartRain() {
+  if (heartRainActive) return;
+  heartRainActive = true;
+
+  setInterval(() => {
+    createHeart();
+  }, 300);
+}
+
+
+function mostrar(){
+
+  document.getElementById("carta").classList.remove("hidden");
+
+  let flor = document.getElementById("peonia");
+
+  setTimeout(()=>{
+    flor.classList.add("visible");
+  },200);
+
+  // 👇 MOSTRAR FOTOS DESPUÉS DE TOCAR LA CARTA
+  let galeria = document.getElementById("photo-gallery");
+  galeria.classList.remove("hidden");
+  galeria.classList.add("show");
+
+  // 👇 EMPIEZA LA LLUVIA
+  lluvia();
+}
+
 
 function mensaje(){
 let msg=document.getElementById("extra");
