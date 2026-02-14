@@ -66,11 +66,41 @@ width:200px;
 border-radius:15px;
 margin-top:10px;
 }
+  
+#rita{
+animation:zoom 2s infinite alternate;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.2);}
+}
+
+.slider{
+display:flex;
+overflow-x:auto;
+gap:10px;
+scroll-snap-type:x mandatory;
+}
+
+.slider img{
+width:200px;
+border-radius:15px;
+scroll-snap-align:center;
+}
 
 </style>
 
 </head>
 <body>
+<div id="lockscreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#ff9a9e;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;">
+<h2>Introduce la contraseña 💌</h2>
+<input type="password" id="pass" placeholder="Nuestra fecha..." style="padding:10px;border-radius:10px;border:none;">
+<br><br>
+<button onclick="checkPass()">Entrar</button>
+<p id="error"></p>
+</div>
+
 
 <div class="container">
 
@@ -81,7 +111,7 @@ margin-top:10px;
 
 <div id="carta" class="hidden">
 
-<h2>Para Rita ❤️</h2>
+<h2 id="rita">Para Rita ❤️</h2>
 
 <p>
 Desde el 20 de abril del 2022 mi vida cambió completamente.
@@ -118,7 +148,11 @@ Te amo muchísimo My Kirby 💖
 
 <br><br>
 
-<img src="./foto.jpeg" alt="Nosotros">
+<div class="slider">
+<img src="foto1.jpeg">
+<img src="foto2.jpeg">
+<img src="foto3.jpeg">
+</div>
 
 <br><br>
 
@@ -164,6 +198,15 @@ heart.remove();
 },5000);
 
 },300);
+  
+}
+function checkPass(){
+let password=document.getElementById("pass").value;
+if(password==="20042022"){
+document.getElementById("lockscreen").style.display="none";
+}else{
+document.getElementById("error").innerHTML="Contraseña incorrecta 😢";
+}
 }
 
 </script>
