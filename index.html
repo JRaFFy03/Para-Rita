@@ -118,9 +118,16 @@ z-index:1;
 }
 
 @keyframes fall{
-0%{transform:translateY(-100px);}
-100%{transform:translateY(100dvh);}
+0%{
+transform:translateY(0);
+opacity:1;
 }
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
 
 .hidden {
   opacity: 0;
@@ -141,6 +148,16 @@ animation:fall 5s linear linear;
 pointer-events:none;
 z-index:0;
 }
+.heart{
+position:fixed;
+top:-50px;
+color:#ff4b7d;
+animation:fall linear forwards;
+pointer-events:none;
+z-index:0;
+}
+
+
 
 </style>
 </head>
@@ -237,6 +254,9 @@ Te amo muchísimo My Kirby 💖
 <img src="foto10.jpeg">
 <img src="foto11.jpeg">
 </div>
+  
+<br><br>
+<button onclick="mostrarCupones()">Abrir cupones para My Kirby 🎟️</button>
 
 
 <script>
@@ -343,19 +363,96 @@ heart.classList.add("heart");
 heart.innerHTML="💗";
 
 heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=Math.random()*20+10+"px";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+heart.style.animationDuration=(Math.random()*3+3)+"s";
 
 document.body.appendChild(heart);
 
 setTimeout(()=>{
 heart.remove();
-},5000);
+},6000);
 
-},300);
+},200);
 
 }
 
+let listaCupones=[
+"Elegir nuestra próxima peli",
+"1 masaje cuando nos veamos",
+"1 cita virtual sorpresa",
+"5 besos acumulables",
+"Rafa cocina sin quejarse",
+"Llamada nocturna sin importar la hora",
+"1 día sin discutir",
+"Abrazo infinito IRL",
+"1 noche de juegos",
+"Elegir playlist",
+"1 desayuno en la cama",
+"Rafa cuenta un chisme",
+"Videollamada sin excusas",
+"1 beso extra",
+"Rafa dice que sí a todo",
+"1 película romántica",
+"Elegir comida",
+"1 apapacho",
+"Rafa canta",
+"1 selfie juntos",
+"1 meme dedicado",
+"1 mensaje sorpresa",
+"Elegir fondo de pantalla",
+"1 paseo juntos",
+"Rafa ve tu serie"
+];
+
+function mostrarCupones(){
+document.getElementById("cupones").classList.remove("hidden");
+renderCupones();
+}
+
+function renderCupones(){
+
+let cont=document.getElementById("contenedorCupones");
+cont.innerHTML="";
+
+listaCupones.forEach((c,i)=>{
+
+let usado=localStorage.getItem("cupon"+i);
+
+let div=document.createElement("div");
+div.classList.add("cupon");
+
+if(usado){
+div.classList.add("usado");
+}
+
+div.innerHTML=c;
+
+div.onclick=function(){
+
+if(!localStorage.getItem("cupon"+i)){
+localStorage.setItem("cupon"+i,true);
+}
+
+renderCupones();
+
+};
+
+cont.appendChild(div);
+
+});
+
+}
+
+window.onclick=function(e){
+if(e.target.id==="cupones"){
+document.getElementById("cupones").classList.add("hidden");
+}
+}
+
 </script>
+<div id="cupones" class="modal hidden">
+<div class="modal-content" id="contenedorCupones"></div>
+</div>
 
 </body>
 </html>
