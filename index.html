@@ -157,7 +157,68 @@ pointer-events:none;
 z-index:0;
 }
 
+.cupon{
+background:linear-gradient(135deg,#ffe6eb,#ffd6e0);
+padding:15px;
+border-radius:15px;
+cursor:pointer;
+text-align:center;
+transition:0.3s;
+font-weight:bold;
+position:relative;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+overflow:hidden;
+animation:aparecer 0.4s ease;
+}
 
+.cupon::before{
+content:"🎟️ CUPÓN";
+position:absolute;
+top:5px;
+left:10px;
+font-size:10px;
+color:#ff4b7d;
+opacity:0.6;
+}
+
+.cupon-num{
+display:block;
+font-size:12px;
+color:#ff4b7d;
+margin-bottom:5px;
+}
+
+.usado{
+background:#ccc !important;
+text-decoration:line-through;
+opacity:0.6;
+}
+
+.usado::after{
+content:"USADO";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) rotate(-20deg);
+font-size:20px;
+color:red;
+font-weight:bold;
+opacity:0.5;
+border:2px solid red;
+padding:5px 10px;
+border-radius:10px;
+}
+
+@keyframes aparecer{
+from{
+opacity:0;
+transform:scale(0.8);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
 
 </style>
 </head>
@@ -425,7 +486,10 @@ if(usado){
 div.classList.add("usado");
 }
 
-div.innerHTML=c;
+div.innerHTML=`
+<span class="cupon-num">Cupón #${i+1}</span>
+${c}
+`;
 
 div.onclick=function(){
 
@@ -442,6 +506,7 @@ cont.appendChild(div);
 });
 
 }
+
 
 window.onclick=function(e){
 if(e.target.id==="cupones"){
