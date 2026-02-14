@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro Lugar 💖</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+overflow:hidden;
+}
+
+.container{
+background:rgba(255,255,255,0.2);
+padding:25px;
+border-radius:20px;
+width:90%;
+max-width:400px;
+animation:fadeIn 2s;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#ff4b7d;
+color:white;
+font-size:16px;
+margin-top:10px;
+}
+
+.hidden{
+display:none;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.heart{
+position:absolute;
+color:#ff4b7d;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-100vh);}
+100%{transform:translateY(100vh);}
+}
+
+img{
+width:200px;
+border-radius:15px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Hola My Kirby 💗</h1>
+<p>Bienvenida a nuestro pequeño lugar en internet</p>
+
+<button onclick="mostrar()">Haz clic si amas a Rafa 💌</button>
+
+<div id="carta" class="hidden">
+
+<h2>Para Rita ❤️</h2>
+
+<p>
+Desde el 20 de abril del 2022 mi vida cambió completamente.
+</p>
+
+<p>
+Tal vez hoy no podamos abrazarnos,
+pero quería hacerte algo que viviera
+en internet...
+como nosotros vivimos
+en el corazón del otro.
+</p>
+
+<p>
+Gracias por ser mi paz,
+mi apoyo,
+mi persona favorita.
+</p>
+
+<p>
+Te amo muchísimo My Kirby 💖
+</p>
+
+<h3>Tiempo juntos:</h3>
+<p id="contador"></p>
+
+<button onclick="mensaje()">Presiona cuando me extrañes 🫂</button>
+<p id="extra"></p>
+
+<br>
+
+<button onclick="sorpresa()">No presiones este botón 👀</button>
+<p id="sorp"></p>
+
+<br><br>
+
+<img src="foto.jpg">
+
+<br><br>
+
+<iframe style="border-radius:12px" 
+src="https://open.spotify.com/embed/track/2VmxWvOHaAZ7k3F7hLTrzM" 
+width="300" height="80" frameBorder="0" allowfullscreen="" 
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+</div>
+
+</div>
+
+<script>
+
+function mostrar(){
+document.getElementById("carta").classList.remove("hidden");
+lluvia();
+}
+
+function mensaje(){
+document.getElementById("extra").innerHTML=
+"Incluso cuando no estoy contigo, mi corazón siempre está contigo ❤️";
+}
+
+function sorpresa(){
+document.getElementById("sorp").innerHTML=
+"Sabía que lo ibas a presionar 😌 Feliz San Valentín, te amo Rita 💕";
+}
+
+var inicio=new Date("2022-04-20");
+var hoy=new Date();
+var dias=Math.floor((hoy-inicio)/(1000*60*60*24));
+
+document.getElementById("contador").innerHTML=
+dias+" días amándonos 💕";
+
+function lluvia(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="💗";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=Math.random()*20+10+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+},300);
+}
+
+</script>
+
+</body>
+</html>
