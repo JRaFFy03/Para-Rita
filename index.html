@@ -176,13 +176,23 @@ background:gray;
 text-decoration:line-through;
 }
 
+#passwordInput{
+width:250px;
+max-width:80%;
+display:block;
+margin:10px auto;
+border-radius:10px;
+border:none;
+padding:10px;
+}
+
 </style>
 
 </head>
 <body>
 <div id="lockscreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#ff9a9e;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;">
 <h2>Introduce la contraseña 💌</h2>
-<input type="password" id="pass" placeholder="Nuestra fecha..." style="padding:10px;border-radius:10px;border:none;">
+<input type="password" id="passwordInput" placeholder="Nuestra fecha 💕">
 <br><br>
 <button onclick="checkPass()">Entrar</button>
 <p id="error"></p>
@@ -343,7 +353,7 @@ heart.remove();
   
 }
 function checkPass(){
-let password=document.getElementById("pass").value;
+let password=document.getElementById("passwordInput").value;
 if(password==="20042022"){
 document.getElementById("lockscreen").style.display="none";
 }else{
