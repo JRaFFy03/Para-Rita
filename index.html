@@ -513,11 +513,29 @@ if(e.target.id==="cupones"){
 document.getElementById("cupones").classList.add("hidden");
 }
 }
+// --- FUNCION DE RESET DE CUPONES ---
+function mostrarResetCupones(){
+  let pass = prompt("Ingresa la contraseña secreta para resetear los cupones 💌:");
+  const miPassword = "RESET2026"; // Cambia esto a la contraseña que tú quieras
+
+  if(pass === miPassword){
+    // Borrar todos los cupones del localStorage
+    listaCupones.forEach((c, i)=>{
+      localStorage.removeItem("cupon"+i);
+    });
+    alert("¡Cupones restablecidos! 🎟️💖");
+    renderCupones(); // Volver a dibujar los cupones
+  } else {
+    alert("Contraseña incorrecta 😢");
+  }
+}
 
 </script>
 <div id="cupones" class="modal hidden">
-<div class="modal-content" id="contenedorCupones"></div>
+  <div class="modal-content" id="contenedorCupones"></div>
+  <button onclick="mostrarResetCupones()">🔒 Resetear cupones</button>
 </div>
+
 
 </body>
 </html>
