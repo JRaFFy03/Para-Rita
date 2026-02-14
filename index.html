@@ -215,6 +215,7 @@ Te amo muchísimo My Kirby 💖
 
 
 <script>
+let lluviaActiva=false;
 let heartRainActive = false;
   
 function corazones(){
@@ -264,23 +265,22 @@ function startHeartRain() {
 
 
 function mostrar(){
+document.getElementById("carta").classList.remove("hidden");
 
-  document.getElementById("carta").classList.remove("hidden");
+let flor=document.getElementById("peonia");
+flor.classList.remove("hidden");
 
-  let flor = document.getElementById("peonia");
+setTimeout(()=>{
+flor.classList.add("visible");
+},100);
 
-  setTimeout(()=>{
-    flor.classList.add("visible");
-  },200);
-
-  // 👇 MOSTRAR FOTOS DESPUÉS DE TOCAR LA CARTA
-  let galeria = document.getElementById("photo-gallery");
-  galeria.classList.remove("hidden");
-  galeria.classList.add("show");
-
-  // 👇 EMPIEZA LA LLUVIA
-  lluvia();
+//👇 SOLO iniciar la lluvia UNA vez
+if(!lluviaActiva){
+lluvia();
+lluviaActiva=true;
 }
+}
+
 
 
 function mensaje(){
