@@ -84,15 +84,42 @@ to{transform:scale(1.2);}
 .peonia{
 display:block;
 margin:40px auto;
-width:180px;
+width:200px;
 opacity:0;
 transform:scale(0);
-transition:all 1.5s ease;
+transition:all 2s ease;
 }
+
 
 .peonia.visible{
 opacity:1;
 transform:scale(1);
+}
+
+.corazon{
+position:fixed;
+color:#ff4b7d;
+animation:subir 2s linear forwards;
+pointer-events:none;
+z-index:999;
+}
+
+@keyframes subir{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-200px);opacity:0;}
+}
+
+.lluvia{
+position:fixed;
+color:#ff4b7d;
+animation:fall 5s linear infinite;
+pointer-events:none;
+z-index:1;
+}
+
+@keyframes fall{
+0%{transform:translateY(-100px);}
+100%{transform:translateY(100dvh);}
 }
 
 </style>
@@ -117,7 +144,7 @@ transform:scale(1);
 
 <div id="carta" class="hidden">
 
-<h2 id="rita">Para Rita ❤️</h2>
+<h2 id="rita" onclick="corazones()">Para Rita ❤️</h2>
 
 <p>
 Desde el 20 de abril del 2022 mi vida cambió completamente.
@@ -179,12 +206,36 @@ Te amo muchísimo My Kirby 💖
 
 <script>
 
+function corazones(){
+for(let i=0;i<10;i++){
+let heart=document.createElement("div");
+heart.classList.add("corazon");
+heart.innerHTML="💗";
+
+let rita=document.getElementById("rita");
+let rect=rita.getBoundingClientRect();
+
+heart.style.left=(rect.left+Math.random()*100)+"px";
+heart.style.top=(rect.top)+"px";
+heart.style.fontSize=Math.random()*20+10+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},2000);
+}
+}
+
 function mostrar(){
 document.getElementById("carta").classList.remove("hidden");
 let flor=document.getElementById("peonia");
+
 setTimeout(()=>{
 flor.classList.add("visible");
 },200);
+
+lluvia();
 }
 
 function mensaje(){
@@ -213,6 +264,22 @@ var hoy=new Date();
 var dias=Math.floor((hoy-inicio)/(1000*60*60*24));
 document.getElementById("contador").innerHTML=
 dias+" días amándonos 💕";
+
+function lluvia(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.classList.add("lluvia");
+heart.innerHTML="💗";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=Math.random()*20+10+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+},300);
+}
 
 </script>
 
