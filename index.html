@@ -89,6 +89,20 @@ border-radius:15px;
 scroll-snap-align:center;
 }
 
+.decoracion{
+position:absolute;
+right:10px;
+top:150px;
+width:120px;
+opacity:0.3;
+z-index:0;
+}
+
+.container{
+position:relative;
+z-index:1;
+}
+
 </style>
 
 </head>
@@ -103,6 +117,8 @@ scroll-snap-align:center;
 
 
 <div class="container">
+<img src="./peonia.png" class="decoracion">
+
 
 <h1>Hola My Kirby 💗</h1>
 <p>Bienvenida a nuestro pequeño lugar en internet</p>
@@ -168,13 +184,23 @@ lluvia();
 }
 
 function mensaje(){
-document.getElementById("extra").innerHTML=
-"Incluso cuando no estoy contigo, mi corazón siempre está contigo ❤️";
+let msg=document.getElementById("extra");
+
+if(msg.innerHTML===""){
+msg.innerHTML="Incluso cuando no estoy contigo, mi corazón siempre está contigo ❤️";
+}else{
+msg.innerHTML="";
+}
 }
 
 function sorpresa(){
-document.getElementById("sorp").innerHTML=
-"Sabía que lo ibas a presionar 😌 Feliz San Valentín, te amo Rita 💕";
+let msg=document.getElementById("sorp");
+
+if(msg.innerHTML===""){
+msg.innerHTML="Sabía que lo ibas a presionar 😌 Feliz San Valentín, te amo Rita 💕";
+}else{
+msg.innerHTML="";
+}
 }
 
 var inicio=new Date("2022-04-20");
