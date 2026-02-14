@@ -103,6 +103,18 @@ position:relative;
 z-index:1;
 }
 
+.peonia{
+display:block;
+margin:auto;
+width:150px;
+opacity:0;
+transition:opacity 2s ease;
+}
+
+.peonia.visible{
+opacity:1;
+}
+
 </style>
 
 </head>
@@ -117,13 +129,13 @@ z-index:1;
 
 
 <div class="container">
-<img src="./peonia.png" class="decoracion">
 
 
 <h1>Hola My Kirby 💗</h1>
 <p>Bienvenida a nuestro pequeño lugar en internet</p>
 
 <button onclick="mostrar()">Haz clic si me amas 💌</button>
+<img id="peonia" src="./peonia.png" class="peonia hidden">
 
 <div id="carta" class="hidden">
 
@@ -131,24 +143,44 @@ z-index:1;
 
 <p>
 Desde el 20 de abril del 2022 mi vida cambió completamente.
+Desde ese día empezaste a convertirte en una de las cosas más bonitas que me han pasado.
 </p>
 
 <p>
-Tal vez hoy no podamos abrazarnos,
-pero quería hacerte algo que viviera
-en internet...
-como nosotros vivimos
+Tal vez hoy no podamos abrazarnos o
+ni tomarnos de la mano como nos gustaría,
+pero quería hacerte algo que viviera aquí,
+en internet…
+así como nosotros vivimos
 en el corazón del otro.
 </p>
 
 <p>
-Gracias por ser mi paz,
-mi apoyo,
-mi persona favorita.
+Porque incluso en la distancia,
+sigues siendo mi lugar seguro,
+mi paz cuando todo va mal,
+mi apoyo cuando lo necesito,
+y mi persona favorita en este mundo.
+</p>
+
+<p>
+Gracias por cada momento,
+por cada risa,
+por cada palabra de ánimo,
+y por quedarte incluso en los días difíciles.
+</p>
+
+<p>
+No importa donde estemos,
+ni cuantos kilómetros haya entre nosotros,
+siempre vamos a estar conectados
+de la forma más importante.
 </p>
 
 <p>
 Te amo muchísimo My Kirby 💖
+</p>
+
 </p>
 
 <h3>Tiempo juntos:</h3>
@@ -180,8 +212,17 @@ Te amo muchísimo My Kirby 💖
 
 function mostrar(){
 document.getElementById("carta").classList.remove("hidden");
+
+let flor=document.getElementById("peonia");
+flor.classList.remove("hidden");
+
+setTimeout(()=>{
+flor.classList.add("visible");
+},100);
+
 lluvia();
 }
+
 
 function mensaje(){
 let msg=document.getElementById("extra");
