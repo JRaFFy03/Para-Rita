@@ -133,6 +133,49 @@ pointer-events:none;
 100%{transform:translateY(-200px);opacity:0;}
 }
 
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.modal-content{
+background:white;
+width:90%;
+max-height:80%;
+overflow-y:auto;
+padding:20px;
+border-radius:20px;
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+gap:15px;
+}
+
+.cupon{
+background:#ffe6eb;
+padding:10px;
+border-radius:15px;
+cursor:pointer;
+text-align:center;
+transition:0.3s;
+}
+
+.cupon:hover{
+transform:scale(1.05);
+}
+
+.usado{
+background:gray;
+text-decoration:line-through;
+}
+
 </style>
 
 </head>
@@ -199,6 +242,11 @@ de la forma más importante.
 <p>
 Te amo muchísimo My Kirby 💖
 </p>
+  
+<br><br>
+<button onclick="mostrarCupones()">Abrir cupones para My Kirby 🎟️</button>
+
+</div>
 
 </p>
 
@@ -324,7 +372,66 @@ heart.remove();
 }
 }
 
+let listaCupones=[
+"Elegir nuestra próxima peli",
+"1 masaje cuando nos veamos",
+"1 cita virtual sorpresa",
+"5 besos acumulables",
+"Rafa cocina sin quejarse",
+"Llamada nocturna sin importar la hora",
+"1 día sin discutir",
+"Abrazo infinito IRL",
+"1 noche de juegos",
+"Elegir playlist",
+"1 desayuno en la cama",
+"Rafa cuenta un chisme",
+"Videollamada sin excusas",
+"1 beso extra",
+"Rafa dice que sí a todo",
+"1 película romántica",
+"Elegir comida",
+"1 apapacho",
+"Rafa canta",
+"1 selfie juntos",
+"1 meme dedicado",
+"1 mensaje sorpresa",
+"Elegir fondo de pantalla",
+"1 paseo juntos",
+"Rafa ve tu serie"
+];
+
+function mostrarCupones(){
+document.getElementById("cupones").classList.remove("hidden");
+renderCupones();
+}
+
+function renderCupones(){
+let cont=document.getElementById("contenedorCupones");
+cont.innerHTML="";
+listaCupones.forEach((c,i)=>{
+let usado=localStorage.getItem("cupon"+i);
+let div=document.createElement("div");
+div.classList.add("cupon");
+if(usado){div.classList.add("usado");}
+div.innerHTML=c;
+div.onclick=function(){
+localStorage.setItem("cupon"+i,true);
+renderCupones();
+};
+cont.appendChild(div);
+});
+}
+window.onclick=function(e){
+if(e.target.id==="cupones"){
+document.getElementById("cupones").classList.add("hidden");
+}
+}
+
 </script>
+  
+<div id="cupones" class="modal hidden">
+<div class="modal-content" id="contenedorCupones"></div>
+</div>
 
 </body>
 </html>
