@@ -166,49 +166,50 @@ z-index:0;
 
 <h2 id="rita" onclick="corazones()">Para Rita ❤️</h2>
 
-<p> 
-Desde el 20 de abril del 2022 mi vida cambió completamente. 
-Desde ese día empezaste a convertirte en una 
-de las cosas más bonitas que me han pasado. 
-</p> 
-  
-<p> 
+<p>
+Desde el 20 de abril del 2022 mi vida cambió completamente.
+Desde ese día empezaste a convertirte en una
+de las cosas más bonitas que me han pasado.
+</p>
+
+<p>
 Tal vez hoy no podamos abrazarnos o
 ni tomarnos de la mano como nos gustaría,
 pero quería hacerte algo que viviera aquí,
-en internet… 
+en internet…
 así como nosotros vivimos en el corazón del otro.
-</p> 
-  
-<p> 
-Porque incluso en la distancia,
-sigues siendo mi lugar seguro, 
-i paz cuando todo va mal, 
-mi apoyo cuando lo necesito, 
-y mi persona favorita en este mundo. 
 </p>
-  
-<img id="peonia" src="peonia.png" class="peonia">
 
-<p> 
-Gracias por cada momento, 
-por cada risa, 
-por cada palabra de ánimo, 
-y por quedarte incluso en los días difíciles. 
-</p> 
-  
-<p> 
-No importa donde estemos, 
-ni cuantos kilómetros haya entre nosotros, 
-siempre vamos a estar conectados 
-de la forma más importante. 
-</p> 
-  
-<p> 
+<p>
+Porque incluso en la distancia,
+sigues siendo mi lugar seguro,
+mi paz cuando todo va mal,
+mi apoyo cuando lo necesito,
+y mi persona favorita en este mundo.
+</p>
+
+<p>
+Gracias por cada momento,
+por cada risa,
+por cada palabra de ánimo,
+y por quedarte incluso en los días difíciles.
+</p>
+
+<p>
+No importa donde estemos,
+ni cuantos kilómetros haya entre nosotros,
+siempre vamos a estar conectados
+de la forma más importante.
+</p>
+
+<p>
 Te amo muchísimo My Kirby 💖
 </p>
 
 </div>
+
+<img id="peonia" src="peonia.png" class="peonia hidden">
+
 
 <h3>Tiempo juntos:</h3>
 <p id="contador"></p>
@@ -241,7 +242,26 @@ Te amo muchísimo My Kirby 💖
 <script>
 let lluviaActiva=false;
 let heartRainActive = false;
-  
+
+function mostrar(){
+
+document.getElementById("carta").classList.remove("hidden");
+
+let flor=document.getElementById("peonia");
+flor.classList.remove("hidden");
+
+setTimeout(()=>{
+flor.classList.add("visible");
+},200);
+
+document.getElementById("extra").innerHTML=
+"Incluso cuando no estoy contigo, mi corazón siempre está contigo ❤️";
+
+document.getElementById("fotos").classList.remove("hidden");
+
+lluvia();
+}
+
 function corazones(){
 for(let i=0;i<10;i++){
 let heart=document.createElement("div");
